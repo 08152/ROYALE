@@ -1,54 +1,114 @@
-
+```html
 <!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>ROYALE – Lobby</title>
+
     <link rel="stylesheet" href="lobby.css">
 </head>
+
 <body>
 
-<header class="topbar">
-    <div class="logo">ROYALE</div>
+    <!-- HEADER -->
+    <header class="royale-header">
 
-    <nav class="nav">
-        <button data-page="redeem">EINLÖSEN</button>
-        <button data-page="home" class="active">SPIELEN</button>
-        <button data-page="locker">SPIND</button>
-    </nav>
+        <div class="royale-logo">
+            ROYALE
+        </div>
 
-    <div class="account">SPIELER</div>
-</header>
+        <nav class="royale-navigation">
 
-<main>
-    <section id="redeem" class="page"></section>
-    <section id="home" class="page active"></section>
-    <section id="locker" class="page"></section>
-</main>
+            <button class="nav-button" data-page="redeem">
+                EINLÖSEN
+            </button>
 
-<script src="einloesen.js"></script>
-<script src="spielen.js"></script>
-<script src="spind.js"></script>
+            <button class="nav-button active" data-page="home">
+                SPIELEN
+            </button>
 
-<script>
-document.querySelectorAll(".nav button").forEach(button => {
-    button.addEventListener("click", () => {
-        const pageId = button.dataset.page;
+            <button class="nav-button" data-page="locker">
+                SPIND
+            </button>
 
-        document.querySelectorAll(".page").forEach(page => {
-            page.classList.remove("active");
+        </nav>
+
+        <div class="royale-version">
+            ALPHA
+        </div>
+
+    </header>
+
+
+    <!-- HAUPTBEREICH -->
+    <main class="royale-main">
+
+        <!-- EINLÖSEN -->
+        <section id="redeem" class="page">
+        </section>
+
+
+        <!-- HOME / SPIELEN -->
+        <section id="home" class="page active">
+        </section>
+
+
+        <!-- SPIND -->
+        <section id="locker" class="page">
+        </section>
+
+    </main>
+
+
+    <!-- SCRIPTS -->
+    <script src="einloesen.js"></script>
+    <script src="spielen.js"></script>
+    <script src="spind.js"></script>
+    <script src="artikel.js"></script>
+    <script src="shop.js"></script>
+
+
+    <!-- NAVIGATION -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+            const buttons = document.querySelectorAll("[data-page]");
+            const pages = document.querySelectorAll(".page");
+
+            buttons.forEach(button => {
+
+                button.addEventListener("click", () => {
+
+                    const target = button.dataset.page;
+
+                    // Alle Seiten deaktivieren
+                    pages.forEach(page => {
+                        page.classList.remove("active");
+                    });
+
+                    // Zielseite aktivieren
+                    const targetPage = document.getElementById(target);
+
+                    if (targetPage) {
+                        targetPage.classList.add("active");
+                    }
+
+                    // Aktiven Navigation-Button markieren
+                    buttons.forEach(navButton => {
+                        navButton.classList.remove("active");
+                    });
+
+                    button.classList.add("active");
+
+                });
+
+            });
+
         });
-
-        document.querySelectorAll(".nav button").forEach(navButton => {
-            navButton.classList.remove("active");
-        });
-
-        document.getElementById(pageId).classList.add("active");
-        button.classList.add("active");
-    });
-});
-</script>
+    </script>
 
 </body>
 </html>
+```
