@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROYALE – Lobby</title>
+    <link rel="stylesheet" href="lobby.css">
+</head>
+<body>
+
+<header class="topbar">
+
+    <div class="logo">ROYALE</div>
+
+    <nav class="nav">
+        <button data-page="redeem">EINLÖSEN</button>
+        <button data-page="home" class="active">SPIELEN</button>
+        <button data-page="locker">SPIND</button>
+    </nav>
+
+    <div class="account">SPIELER</div>
+
+</header>
+
+<main>
+
+    <section id="redeem" class="page"></section>
+
+    <section id="home" class="page active"></section>
+
+    <section id="locker" class="page"></section>
+
+</main>
+
+<script src="einloesen.js"></script>
+<script src="spielen.js"></script>
+<script src="spind.js"></script>
+
+</body>
+</html>
