@@ -1,0 +1,466 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ROYALE – Konto</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #090909;
+    color: white;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 420px;
+    padding: 35px;
+    background: #151515;
+    border: 1px solid #333;
+    border-radius: 15px;
+    box-shadow: 0 0 35px #000;
+}
+
+.logo {
+    text-align: center;
+    font-size: 42px;
+    font-weight: 1000;
+    letter-spacing: 5px;
+    color: #ff9000;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #888;
+    margin-bottom: 30px;
+}
+
+.tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 25px;
+}
+
+.tabs button {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    background: #292929;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.tabs button.active {
+    background: #ff9000;
+    color: black;
+}
+
+h2 {
+    margin-bottom: 20px;
+    font-size: 22px;
+}
+
+label.field-label {
+    display: block;
+    color: #aaa;
+    font-size: 13px;
+    margin: 15px 0 7px;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #383838;
+    border-radius: 6px;
+    background: #202020;
+    color: white;
+    outline: none;
+    font-size: 15px;
+}
+
+input:focus {
+    border-color: #ff9000;
+}
+
+.pin-note {
+    color: #999;
+    font-size: 12px;
+    margin-top: 7px;
+    line-height: 1.5;
+}
+
+.warning {
+    margin-top: 15px;
+    padding: 12px;
+    background: #2b1c0c;
+    border: 1px solid #704000;
+    border-radius: 6px;
+    color: #ffbd69;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.terms-area {
+    margin-top: 20px;
+    padding: 14px;
+    background: #202020;
+    border-radius: 7px;
+}
+
+.terms-link {
+    display: inline-block;
+    color: #ff9b20;
+    text-decoration: none;
+    font-size: 13px;
+    margin-bottom: 12px;
+}
+
+.terms-link:hover {
+    text-decoration: underline;
+}
+
+.checkbox-row {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    color: #ccc;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.checkbox-row input {
+    margin-top: 3px;
+    accent-color: #ff9000;
+}
+
+.checkbox-row input:disabled {
+    cursor: not-allowed;
+}
+
+.status {
+    color: #999;
+    font-size: 12px;
+    margin-top: 10px;
+    line-height: 1.5;
+}
+
+.main-button {
+    width: 100%;
+    padding: 15px;
+    margin-top: 22px;
+    border: none;
+    border-radius: 6px;
+    background: #ff9000;
+    color: black;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.main-button:disabled {
+    background: #494949;
+    color: #888;
+    cursor: not-allowed;
+}
+
+.hidden {
+    display: none;
+}
+
+.message {
+    margin-top: 15px;
+    color: #ffbd69;
+    font-size: 13px;
+    line-height: 1.5;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="logo">ROYALE</div>
+    <div class="subtitle">Dein Spiel. Deine Welt.</div>
+
+    <div class="tabs">
+        <button id="loginTab" class="active" type="button">LOGIN</button>
+        <button id="registerTab" type="button">REGISTER</button>
+    </div>
+
+    <!-- LOGIN -->
+    <form id="loginForm">
+
+        <h2>Willkommen zurück</h2>
+
+        <label class="field-label" for="loginEmail">E-Mail-Adresse</label>
+        <input
+            type="email"
+            id="loginEmail"
+            placeholder="name@beispiel.de"
+            required
+        >
+
+        <label class="field-label" for="loginPin">Dein 6-stelliger PIN</label>
+        <input
+            type="password"
+            id="loginPin"
+            placeholder="••••••"
+            inputmode="numeric"
+            maxlength="6"
+            pattern="[0-9]{6}"
+            required
+        >
+
+        <button class="main-button" type="submit">ANMELDEN</button>
+
+        <div id="loginMessage" class="message"></div>
+
+    </form>
+
+    <!-- REGISTRIERUNG -->
+    <form id="registerForm" class="hidden">
+
+        <h2>Konto erstellen</h2>
+
+        <label class="field-label" for="registerEmail">E-Mail-Adresse</label>
+        <input
+            type="email"
+            id="registerEmail"
+            placeholder="name@beispiel.de"
+            required
+        >
+
+        <label class="field-label" for="registerPin">Neuen 6-stelligen PIN erstellen</label>
+        <input
+            type="password"
+            id="registerPin"
+            placeholder="••••••"
+            inputmode="numeric"
+            maxlength="6"
+            pattern="[0-9]{6}"
+            required
+        >
+
+        <label class="field-label" for="registerPinRepeat">PIN wiederholen</label>
+        <input
+            type="password"
+            id="registerPinRepeat"
+            placeholder="••••••"
+            inputmode="numeric"
+            maxlength="6"
+            pattern="[0-9]{6}"
+            required
+        >
+
+        <div class="pin-note">
+            Dein PIN muss aus genau sechs Ziffern bestehen.
+        </div>
+
+        <div class="warning">
+            <strong>Wichtig:</strong> Es gibt keine PIN-Zurücksetzung.
+            Bewahre deinen PIN sicher auf.
+        </div>
+
+        <div class="terms-area">
+
+            <a href="bedingungen.html" class="terms-link" id="termsLink">
+                Bedingungen lesen →
+            </a>
+
+            <label class="checkbox-row">
+                <input
+                    type="checkbox"
+                    id="termsCheck"
+                    disabled
+                >
+                <span>
+                    Ich habe die Bedingungen gelesen und akzeptiere sie.
+                </span>
+            </label>
+
+            <div class="status" id="termsStatus">
+                Lies zuerst die Bedingungen vollständig bis zum Ende.
+            </div>
+
+        </div>
+
+        <button
+            class="main-button"
+            id="registerButton"
+            type="submit"
+            disabled
+        >
+            KONTO ERSTELLEN
+        </button>
+
+        <div id="registerMessage" class="message"></div>
+
+    </form>
+
+</div>
+
+<script>
+const loginTab = document.getElementById("loginTab");
+const registerTab = document.getElementById("registerTab");
+
+const loginForm = document.getElementById("loginForm");
+const registerForm = document.getElementById("registerForm");
+
+const termsCheck = document.getElementById("termsCheck");
+const termsStatus = document.getElementById("termsStatus");
+const registerButton = document.getElementById("registerButton");
+
+
+// Zwischen Login und Registrierung wechseln
+
+function showLogin() {
+    loginForm.classList.remove("hidden");
+    registerForm.classList.add("hidden");
+
+    loginTab.classList.add("active");
+    registerTab.classList.remove("active");
+}
+
+function showRegister() {
+    loginForm.classList.add("hidden");
+    registerForm.classList.remove("hidden");
+
+    loginTab.classList.remove("active");
+    registerTab.classList.add("active");
+}
+
+loginTab.addEventListener("click", showLogin);
+registerTab.addEventListener("click", showRegister);
+
+
+// Bedingungen wurden vollständig gelesen?
+
+function checkTermsRead() {
+    const read = sessionStorage.getItem("royaleTermsRead") === "yes";
+
+    if (read) {
+        termsCheck.disabled = false;
+
+        termsStatus.textContent =
+            "Bedingungen gelesen. Setze jetzt selbst den Haken.";
+
+        termsStatus.style.color = "#ffbd69";
+    }
+}
+
+
+// Beim Zurückkehren von bedingungen.html prüfen
+
+window.addEventListener("pageshow", checkTermsRead);
+window.addEventListener("focus", checkTermsRead);
+
+
+// Checkbox muss ausdrücklich angehakt werden
+
+termsCheck.addEventListener("change", function() {
+
+    registerButton.disabled = !(
+        termsCheck.disabled === false &&
+        termsCheck.checked === true
+    );
+
+    if (termsCheck.checked) {
+        termsStatus.textContent =
+            "Akzeptiert. Du kannst jetzt dein Konto erstellen.";
+
+        termsStatus.style.color = "#7bd88f";
+    } else {
+        termsStatus.textContent =
+            "Du musst die Bedingungen akzeptieren.";
+
+        termsStatus.style.color = "#ffbd69";
+    }
+});
+
+
+// Registrierung
+
+registerForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const email = document.getElementById("registerEmail").value.trim();
+    const pin = document.getElementById("registerPin").value;
+    const pinRepeat = document.getElementById("registerPinRepeat").value;
+
+    const message = document.getElementById("registerMessage");
+
+    // Bedingungen müssen gelesen und angehakt sein
+
+    if (
+        termsCheck.disabled ||
+        !termsCheck.checked
+    ) {
+        message.textContent =
+            "Bitte lies und akzeptiere zuerst die Bedingungen.";
+        return;
+    }
+
+    // PIN prüfen
+
+    if (!/^[0-9]{6}$/.test(pin)) {
+        message.textContent =
+            "Dein PIN muss genau sechs Ziffern haben.";
+        return;
+    }
+
+    if (pin !== pinRepeat) {
+        message.textContent =
+            "Die beiden PINs stimmen nicht überein.";
+        return;
+    }
+
+    message.textContent =
+        "Die Benutzeroberfläche ist bereit. Für echte Konten fehlen noch ein sicherer Server und eine Datenbank.";
+});
+
+
+// Login-Demo
+
+loginForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    document.getElementById("loginMessage").textContent =
+        "Die echte Anmeldung wird später mit dem ROYALE-Server verbunden.";
+});
+
+
+// PIN-Felder nur mit Ziffern
+
+document.querySelectorAll('input[inputmode="numeric"]').forEach(input => {
+    input.addEventListener("input", function() {
+        this.value = this.value.replace(/[^0-9]/g, "").slice(0, 6);
+    });
+});
+
+
+// Beim Öffnen der Seite den Button immer gesperrt lassen
+
+registerButton.disabled = true;
+</script>
+
+</body>
+</html>
