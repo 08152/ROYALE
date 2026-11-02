@@ -1,0 +1,241 @@
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    background: radial-gradient(ellipse at 50% 80%, #38200d, #080808 75%);
+    color: white;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+.topbar {
+    height: 76px;
+    display: flex;
+    align-items: center;
+    padding: 0 35px;
+    gap: 35px;
+    background: rgba(8,8,8,.95);
+    border-bottom: 1px solid #333;
+    position: relative;
+    z-index: 5;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 1000;
+    letter-spacing: 3px;
+    color: #ff9000;
+}
+
+.nav {
+    display: flex;
+    height: 100%;
+    gap: 10px;
+}
+
+.nav button {
+    padding: 0 22px;
+    border: none;
+    border-bottom: 4px solid transparent;
+    background: transparent;
+    color: #aaa;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.nav button:hover {
+    color: white;
+    background: #ffffff08;
+}
+
+.nav button.active {
+    color: white;
+    border-bottom-color: #ff9000;
+}
+
+.account {
+    margin-left: auto;
+    color: #999;
+    font-size: 13px;
+}
+
+.page {
+    display: none;
+    height: calc(100vh - 76px);
+    width: 100%;
+}
+
+.page.active {
+    display: flex;
+}
+
+.panel {
+    width: min(90%, 480px);
+    padding: 35px;
+    background: #151515;
+    border: 1px solid #333;
+    border-radius: 12px;
+}
+
+.panel h1 {
+    margin-bottom: 12px;
+}
+
+.panel p {
+    color: #999;
+    line-height: 1.5;
+    margin-bottom: 25px;
+}
+
+.code-input {
+    width: 100%;
+    padding: 16px;
+    background: #222;
+    border: 1px solid #444;
+    border-radius: 5px;
+    color: white;
+    font-size: 17px;
+    text-align: center;
+    outline: none;
+}
+
+.action-button {
+    width: 100%;
+    margin-top: 15px;
+    padding: 15px;
+    background: #ff9000;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.result {
+    color: #ffbd69;
+    font-size: 13px;
+    margin-top: 15px;
+}
+
+#home {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+}
+
+.home-title {
+    font-size: clamp(45px, 8vw, 85px);
+    font-weight: 1000;
+    letter-spacing: 5px;
+}
+
+.season {
+    color: #ff9c28;
+    font-size: 13px;
+    letter-spacing: 4px;
+    margin-bottom: 15px;
+}
+
+.home-subtitle {
+    color: #aaa;
+    margin-top: 12px;
+}
+
+.play-button {
+    margin-top: 40px;
+    padding: 19px 65px;
+    background: #ff9000;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    font-size: 19px;
+    font-weight: 1000;
+    cursor: pointer;
+}
+
+.mode {
+    margin-top: 22px;
+    color: #777;
+    font-size: 13px;
+}
+
+#redeem {
+    justify-content: center;
+    align-items: center;
+}
+
+#locker {
+    flex-direction: column;
+    padding: 45px;
+    overflow-y: auto;
+}
+
+.locker-description {
+    color: #888;
+    margin: 8px 0 30px;
+}
+
+.inventory {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 15px;
+    max-width: 900px;
+    width: 100%;
+}
+
+.slot {
+    aspect-ratio: 1;
+    background: linear-gradient(145deg, #202020, #111);
+    border: 1px solid #383838;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.slot-icon {
+    font-size: 35px;
+}
+
+.slot-name {
+    font-size: 12px;
+    color: #999;
+}
+
+@media(max-width:650px) {
+    .topbar {
+        padding: 0 10px;
+        gap: 10px;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .nav {
+        gap: 0;
+    }
+
+    .nav button {
+        padding: 0 10px;
+        font-size: 12px;
+    }
+
+    .account {
+        display: none;
+    }
+
+    #locker {
+        padding: 25px 15px;
+    }
+}
