@@ -10,7 +10,6 @@
 <body>
 
 <header class="topbar">
-
     <div class="logo">ROYALE</div>
 
     <nav class="nav">
@@ -20,22 +19,36 @@
     </nav>
 
     <div class="account">SPIELER</div>
-
 </header>
 
 <main>
-
     <section id="redeem" class="page"></section>
-
     <section id="home" class="page active"></section>
-
     <section id="locker" class="page"></section>
-
 </main>
 
 <script src="einloesen.js"></script>
 <script src="spielen.js"></script>
 <script src="spind.js"></script>
+
+<script>
+document.querySelectorAll(".nav button").forEach(button => {
+    button.addEventListener("click", () => {
+        const pageId = button.dataset.page;
+
+        document.querySelectorAll(".page").forEach(page => {
+            page.classList.remove("active");
+        });
+
+        document.querySelectorAll(".nav button").forEach(navButton => {
+            navButton.classList.remove("active");
+        });
+
+        document.getElementById(pageId).classList.add("active");
+        button.classList.add("active");
+    });
+});
+</script>
 
 </body>
 </html>
